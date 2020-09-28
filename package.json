@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "name": "server_sent_events_demo",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allhandsondeck/server_sent_events_demo.git"
+  },
+  "keywords": [
+    "sse",
+    "sses"
+  ],
+  "author": "U. Kopuz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allhandsondeck/server_sent_events_demo/issues"
+  },
+  "homepage": "https://github.com/allhandsondeck/server_sent_events_demo#readme"
+}

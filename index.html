@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" class="style" />
+    <title>Stream</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="renting" class="channel">
+        <h1>renting</h1>
+        <div class="subscribers">0</div>
+        <button onclick="subscribe('renting')">Subscribe</button>
+      </div>
+      <div id="aviation" class="channel">
+        <h1>aviation</h1>
+        <div class="subscribers">0</div>
+        <button onclick="subscribe('aviation')">Subscribe</button>
+      </div>
+
+      <div id="shipping" class="channel">
+        <h1>shipping</h1>
+        <div class="subscribers">0</div>
+        <button onclick="subscribe('shipping')">Subscribe</button>
+      </div>
+    </div>
+
+    <script>
+      async function subscribe(companyId) {
+        const connection = await fetch(`subscribe/${companyId}`);
+        const response = await connection.json();
+        console.log(response);
+      }
+
+      const eventSource = new EventSource("/sse");
+      eventSource.addEventListener("message", (e) => {
+        try {
+          if (e.lastEventId === "-1") {
+            console.log("last event");
+            eventSource.close();
+          } else {
+            console.log(e.data);
+            const companies = JSON.parse(e.data);
+            for (companyId in companies) {
+              document.querySelector(`#${companyId} .subscribers`).innerHTML =
+                companies[companyId].subscribers;
+            }
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+  </body>
+</html>

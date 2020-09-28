@@ -1,0 +1,16 @@
+h1 {
+  font-size: 20px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+}
+
+.channel {
+  margin: 0 10px;
+}
+
+.subscribers {
+  text-align: center;
+}
